@@ -1,0 +1,26 @@
+<mat-nav-list>
+    <a *ngIf="!loggedIn()" mat-list-item routerLink="/signup" (click)="onClose()">
+      <mat-icon>face</mat-icon>
+      <span class="nav-caption">{{ 'SIGNUP' | translate }}</span>
+    </a>
+    <a *ngIf="!loggedIn()" mat-list-item routerLink="/login" (click)="onClose()">
+      <mat-icon>input</mat-icon>
+      <span class="nav-caption">{{ 'LOGIN' | translate }}</span>
+    </a>
+    <mat-list-item *ngIf="loggedIn()">
+      <button mat-icon-button (click)="onClose(); logout();">
+        <mat-icon>eject</mat-icon>
+        <span class="nav-caption">{{ 'LOGOUT' | translate }}</span>
+      </button>
+    </mat-list-item>
+    <mat-list-item>
+      <button mat-icon-button (click)="onClose(); setLang('pl');">
+        <span class="nav-caption">PL</span>
+      </button>
+    </mat-list-item>
+    <mat-list-item>
+      <button mat-icon-button (click)="onClose(); setLang('en')">
+        <span class="nav-caption">EN</span>
+      </button>
+    </mat-list-item>
+  </mat-nav-list>

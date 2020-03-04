@@ -1,0 +1,20 @@
+<section class="signup-form" style="padding-top: 50px;">
+  <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #f="ngForm" (ngSubmit)="register(f)">
+    <mat-form-field>
+      <input type="text" matInput placeholder="{{ 'EMAIL' | translate }}" ngModel name="email" email required
+        #emailInput="ngModel">
+      <mat-error *ngIf="emailInput.hasError('email') && !emailInput.hasError('required')">
+        {{ 'VALID_EMAIL' | translate }}</mat-error>
+      <mat-error *ngIf="emailInput.hasError('required')">{{ 'FIELD_MUST_NOT_BE_EMPTY' | translate }}</mat-error>
+    </mat-form-field>
+    <mat-form-field hintLabel="{{ 'HAS_TO_BE_AT_LEAST_4_CHARACTERS_LONG' | translate }}">
+      <input type="password" matInput placeholder="{{ 'YOUR_PASSWORD' | translate }}" ngModel name="password" required
+        minlength="4" #pwInput="ngModel">
+      <mat-hint align="end">{{ pwInput.value?.length }} / 4</mat-hint>
+      <mat-error>{{ 'HAS_TO_BE_AT_LEAST_4_CHARACTERS_LONG' | translate }}</mat-error>
+    </mat-form-field>
+    <mat-checkbox ngModel name="agree" required color="primary">{{ 'AGREE_TO_TERMS_AND_CONDITIONS' | translate }}
+    </mat-checkbox>
+    <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">{{ 'SUBMIT' | translate }}</button>
+  </form>
+</section>

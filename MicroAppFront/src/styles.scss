@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+  }
+
+
+.snack-bar {
+  font-size: 16px;
+}
+
+.snack-bar-color-red {
+  background: #bd6060;
+  color: #441010;
+}
+
+.snack-bar-color-green {
+  background: #60c384;
+  color: #053516;
+}
+
+.snack-bar-color-yellow {
+  background: #c7c565;
+  color: #42410d;
+}
+
+.btn-submit {
+  background-color: #56994d;
+}
