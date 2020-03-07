@@ -1,0 +1,69 @@
+<div class="container">
+  <div fxLayout="column" class="header-page" fxLayoutGap="15px">
+    <div>
+      <p class="title-page">{{ 'ADD_PRODUCT' | translate }}</p>
+    </div>
+    <div class="area-product">
+      <mat-form-field class="input-style">
+        <mat-label>{{ 'NAME' | translate }}</mat-label>
+        <input matInput [(ngModel)]="product.name"/>
+      </mat-form-field>
+
+      <mat-form-field class="input-style">
+        <mat-label>{{ 'CATEGORY' | translate }}</mat-label>
+        <mat-select [(ngModel)]="product.categoryId">
+          <mat-option *ngFor="let category of categories" [value]="category.id">
+            {{category.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="area-product">
+      <mat-form-field class="input-style">
+        <mat-label>{{ 'PRICE' | translate }}</mat-label>
+        <input matInput [(ngModel)]="product.price"/>
+      </mat-form-field>
+    </div>
+
+    <div class="area-product">
+      <mat-form-field appearance="fill" class="description-textarea">
+        <mat-label>{{ 'DESCRIPTION' | translate }}</mat-label>
+        <textarea matInput [(ngModel)]="product.description"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <button
+        mat-raised-button
+        color="basic"
+        class="button-form btn-options"
+        (click)="showUploadImage()"
+      >
+        {{ "UPLOAD_IMAGE" | translate }}
+      </button>
+    </div>
+    <div *ngIf="uploadImage">
+      <app-upload-document imageUrl="/assets/img/default-image.png"></app-upload-document>
+    </div>
+
+    <div class="buttons-areas">
+      <button
+        mat-raised-button
+        color="basic"
+        class="button-form btn-options btn-submit"
+        (click)="addProduct(product)"
+      >
+        {{ "SUBMIT" | translate }}
+      </button>
+      <button
+        mat-raised-button
+        color="basic"
+        class="button-form btn-options"
+        (click)="clear()"
+      >
+        {{ "CLEAR" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+.title-page {
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.buttons-areas {
+  padding-top: 20px;
+}
+
+.btn-options {
+  margin: 10px;
+}
+
+.header-page {
+  text-align: center;
+}
+
+.input-style {
+  max-width: 250px;
+  padding: 0px 20px 0px 20px;
+}
+
+.area-product {
+  text-align: center;
+}
+
+.description-textarea {
+  width: 400px;
+  padding: 0px 20px 0px 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .description-textarea {
+    width: 180px;
+  }
+}
