@@ -31,4 +31,12 @@
     "ADD": "Dodaj",
     "PERIOD": "Okres",
     "DATE": "Data",
+    "ADD_PRODUCT": "Dodaj produkt",
+    "NAME": "Nazwa",
+    "CATEGORY": "Kategoria",
+    "PRICE": "Cena",
+    "DESCRIPTION": "Opis",
+    "UPLOAD_IMAGE": "Dodaj zdjecie",
+    "ADDED_PRODUCT": "Produkt dodany",
+    "ERROR": "Ops.. Cos poszlo nie tak"
 }

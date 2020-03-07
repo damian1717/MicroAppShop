@@ -21,6 +21,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notification", "Notificatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroApp.Notification.Api", "MicroApp.Notification.Api\MicroApp.Notification.Api.csproj", "{46927ECE-7574-4A21-A399-954BF0D9F451}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Products", "Products", "{2602E513-1C65-4375-B57D-46C41F989F18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroApp.Products.Api", "MicroApp.Products.Api\MicroApp.Products.Api.csproj", "{14576DC1-F10F-420E-B663-0C54FEC2D022}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,10 @@ Global
 		{46927ECE-7574-4A21-A399-954BF0D9F451}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46927ECE-7574-4A21-A399-954BF0D9F451}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46927ECE-7574-4A21-A399-954BF0D9F451}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14576DC1-F10F-420E-B663-0C54FEC2D022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14576DC1-F10F-420E-B663-0C54FEC2D022}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14576DC1-F10F-420E-B663-0C54FEC2D022}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14576DC1-F10F-420E-B663-0C54FEC2D022}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +63,8 @@ Global
 		{28910C56-5D5E-428C-BA38-F83D5B9F00E6} = {0385A52F-D355-4D25-AC4E-9D303C0B2BA7}
 		{E0A89D5A-1CAA-4D83-9D79-F76154D807E2} = {CDB539A6-EC79-4464-84A2-359C456187C3}
 		{46927ECE-7574-4A21-A399-954BF0D9F451} = {E0A89D5A-1CAA-4D83-9D79-F76154D807E2}
+		{2602E513-1C65-4375-B57D-46C41F989F18} = {CDB539A6-EC79-4464-84A2-359C456187C3}
+		{14576DC1-F10F-420E-B663-0C54FEC2D022} = {2602E513-1C65-4375-B57D-46C41F989F18}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6BA1DE38-D413-498D-AA4F-32421F6CB357}

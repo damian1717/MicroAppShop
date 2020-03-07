@@ -1,3 +1,4 @@
+import { UploadDocumentComponent } from './../../components/common/upload-document/upload-document.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './../material/material.module';
 import { FormsModule } from '@angular/forms';
@@ -9,6 +10,7 @@ import { AuthInterceptor } from 'src/app/_guards/auth/auth.interceptor';
 import { TranslateModule } from '../translate/translate.module';
 
 @NgModule({
+  declarations: [UploadDocumentComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -23,7 +25,8 @@ import { TranslateModule } from '../translate/translate.module';
     MaterialModule,
     FlexLayoutModule,
     JwtAngularModule,
-    TranslateModule
+    TranslateModule,
+    UploadDocumentComponent
   ],
   providers: [
     {

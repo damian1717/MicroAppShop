@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from './modules/auth/auth.module';
 import { MainPageComponent } from './components/main-page/main-page/main-page.component';
+import { ProductsModule } from './modules/products/products.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, SidenavListComponent, MainPageComponent ],
@@ -20,7 +21,8 @@ import { MainPageComponent } from './components/main-page/main-page/main-page.co
     HttpClientModule,
     ReactiveFormsModule,
     SharedModule,
-    AuthModule
+    AuthModule,
+    ProductsModule
   ],
   bootstrap: [AppComponent]
 })

@@ -9,6 +9,9 @@
   </div>
   <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
     <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+      <li *ngIf="loggedIn()">
+        <a routerLink="/add-product">{{ 'ADD_PRODUCT' | translate }}</a>
+      </li>
       <li *ngIf="!loggedIn()">
         <a routerLink="/signup">{{ 'SIGNUP' | translate }}</a>
       </li>
