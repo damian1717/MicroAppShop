@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslatePipe } from 'src/app/core/translate/translate.pipe';
+import { TranslatePipe } from 'src/app/shared/translate/translate.pipe';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { BaseComponent } from 'src/app/core/base-component/base-component';

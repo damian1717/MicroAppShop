@@ -1,6 +1,6 @@
-import { TranslatePipe } from '../../core/translate/translate.pipe';
+import { TranslatePipe } from './translate.pipe';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
-import { TranslateService } from '../../core/translate/translate.service';
+import { TranslateService } from './translate.service';
 
 export function setupTranslateFactory(
   service: TranslateService): Function {

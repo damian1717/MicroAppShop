@@ -1,4 +1,4 @@
-import { Document } from './document';
+import { Document } from '../../common/models/document';
 import { ProductCategory } from './productCategory';
 
 export interface Product {

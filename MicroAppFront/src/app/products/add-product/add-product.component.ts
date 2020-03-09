@@ -1,4 +1,4 @@
-import { TranslatePipe } from '../../core/translate/translate.pipe';
+import { TranslatePipe } from '../../shared/translate/translate.pipe';
 import { BaseComponent } from '../../core/base-component/base-component';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product';

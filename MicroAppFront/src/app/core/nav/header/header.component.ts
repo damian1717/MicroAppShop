@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslatePipe } from 'src/app/core/translate/translate.pipe';
-import { TranslateService } from 'src/app/core/translate/translate.service';
+import { TranslatePipe } from 'src/app/shared/translate/translate.pipe';
+import { TranslateService } from 'src/app/shared/translate/translate.service';
 import { BaseComponent } from 'src/app/core/base-component/base-component';
 import { MatSnackBar } from '@angular/material';
 import { AuthService } from 'src/app/core/auth/services/auth.service';
