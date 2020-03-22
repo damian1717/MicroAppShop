@@ -4,13 +4,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from 'src/app/core/auth/interceptors/auth.interceptor';
-import { UploadDocumentComponent } from '../common/components/upload-document/upload-document.component';
 import { MaterialModule } from './material/material.module';
 import { JwtAngularModule } from './jwt/jwt-angular.module';
 import { TranslateModule } from './translate/translate.module';
 
 @NgModule({
-  declarations: [UploadDocumentComponent],
+  declarations: [],
   imports: [
     CommonModule,
     FormsModule,
@@ -25,8 +24,7 @@ import { TranslateModule } from './translate/translate.module';
     MaterialModule,
     FlexLayoutModule,
     JwtAngularModule,
-    TranslateModule,
-    UploadDocumentComponent
+    TranslateModule
   ],
   providers: [
     {

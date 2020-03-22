@@ -1,9 +1,11 @@
 using Autofac;
+using MicroApp.Api.Services;
 using MicroApp.Common.Authentication;
 using MicroApp.Common.Dispatcher;
 using MicroApp.Common.Jaeger;
 using MicroApp.Common.Mvc;
 using MicroApp.Common.RabbitMq;
+using MicroApp.Common.RestEase;
 using MicroApp.Common.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,7 +43,9 @@ namespace MicroApp.Api
                             .AllowAnyHeader()
                             .WithExposedHeaders(Headers));
             });
-            
+
+            services.RegisterServiceForwarder<IDocumentsService>("documents-service");
+
             services.AddControllers().AddNewtonsoftJson();
         }
 

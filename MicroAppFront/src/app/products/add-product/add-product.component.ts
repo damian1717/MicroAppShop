@@ -5,10 +5,8 @@ import { Product } from '../models/product';
 import { ProductCategory } from '../models/productCategory';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
-export interface Food {
-  value: string;
-  viewValue: string;
-}
+import { Guid } from 'guid-typescript';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -18,6 +16,7 @@ export interface Food {
 export class AddProductComponent extends BaseComponent implements OnInit {
 
   product: Product = {
+    id: Guid.create().toString(),
     name: undefined,
     price: undefined,
     description: undefined,
@@ -29,18 +28,21 @@ export class AddProductComponent extends BaseComponent implements OnInit {
     { id: 2, name: 'Category2'},
     { id: 3, name: 'Category3'}
   ];
-  uploadImage = false;
+
   constructor(private productService: ProductService,
               private translatePipe: TranslatePipe,
-              public snackBar: MatSnackBar) { super(snackBar); }
+              public snackBar: MatSnackBar,
+              private router: Router) { super(snackBar); }
 
   ngOnInit() {
   }
 
   addProduct(product: Product) {
+    this.redirectToUploadDocuments();
     this.productService.addProduct(product).subscribe(
       (success) => {
         this.clear();
+        this.redirectToUploadDocuments();
         this.openSnackBar(this.translatePipe.transform('ADDED_PRODUCT'), this.COLOR_SNACKBAR_GREEN);
       },
       (error) => {
@@ -49,11 +51,11 @@ export class AddProductComponent extends BaseComponent implements OnInit {
       });
   }
 
-  clear() {
-    this.product = { name: undefined, price: undefined, description: undefined, categoryId: undefined };
+  private redirectToUploadDocuments() {
+    this.router.navigate(['upload-documents/', { id: this.product.id.toString(), redirectTo: 'add-product' }]);
   }
 
-  showUploadImage() {
-    this.uploadImage = !this.uploadImage;
+  clear() {
+    this.product = { id: Guid.create().toString(), name: undefined, price: undefined, description: undefined, categoryId: undefined };
   }
 }

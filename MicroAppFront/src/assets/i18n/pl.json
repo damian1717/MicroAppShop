@@ -38,5 +38,6 @@
     "DESCRIPTION": "Opis",
     "UPLOAD_IMAGE": "Dodaj zdjecie",
     "ADDED_PRODUCT": "Produkt dodany",
-    "ERROR": "Ops.. Cos poszlo nie tak"
+    "ERROR": "Ops.. Cos poszlo nie tak",
+    "ADD_FILE": "Dodaj plik"
 }

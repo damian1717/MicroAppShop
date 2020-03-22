@@ -1,3 +1,4 @@
+import { DocumentsModule } from './shared/documents/documents.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,7 +23,8 @@ import { ProductsModule } from './products/products.module';
     ReactiveFormsModule,
     SharedModule,
     AuthModule,
-    ProductsModule
+    ProductsModule,
+    DocumentsModule
   ],
   bootstrap: [AppComponent]
 })

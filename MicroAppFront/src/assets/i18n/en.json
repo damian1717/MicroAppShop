@@ -38,5 +38,6 @@
     "DESCRIPTION": "Description",
     "UPLOAD_IMAGE": "Upload image",
     "ADDED_PRODUCT": "Product added",
-    "ERROR": "Ops... Something went wrong"
+    "ERROR": "Ops... Something went wrong",
+    "ADD_FILE": "Add file"
 }

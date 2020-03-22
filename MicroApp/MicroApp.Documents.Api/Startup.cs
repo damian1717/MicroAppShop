@@ -5,6 +5,9 @@ using MicroApp.Common.Mongo;
 using MicroApp.Common.Mvc;
 using MicroApp.Common.RabbitMq;
 using MicroApp.Common.Swagger;
+using MicroApp.Documents.Api.Domain;
+using MicroApp.Documents.Api.Messages.Commands;
+using MicroApp.Documents.Api.Messages.Events;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -47,7 +50,7 @@ namespace MicroApp.Documents.Api
                     .AsImplementedInterfaces();
             builder.AddDispatchers();
             builder.AddMongo();
-            // builder.AddMongoRepository<>("");
+            builder.AddMongoRepository<Document>("Documents");
             builder.AddRabbitMq();
         }
 
@@ -63,7 +66,9 @@ namespace MicroApp.Documents.Api
             app.UseAllForwardedHeaders();
             app.UseSwaggerDocs();
 
-            app.UseRabbitMq();
+            app.UseRabbitMq()
+                .SubscribeCommand<AddDocument>(onError: (c, e) =>
+                    new AddDocumentRejected(c.Id, e.Message, e.Code));
 
             app.UseRouting();
 

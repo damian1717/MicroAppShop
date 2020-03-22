@@ -1,4 +1,6 @@
+import { DocumentService } from '../../shared/documents/services/document.service';
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-main-page',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor() { }
+  image: any;
+  constructor(private documentService: DocumentService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
+    this.documentService.getDocument('875093f9-7547-45a0-8aeb-e527eef6739a').subscribe(
+      (data) => {
+        console.log(data);
+        const objectURL = 'data:image/png;base64,' + data.fileArray;
+        this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
   }
 
 }

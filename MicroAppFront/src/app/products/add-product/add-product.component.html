@@ -1,19 +1,22 @@
 <div class="container">
   <div fxLayout="column" class="header-page" fxLayoutGap="15px">
     <div>
-      <p class="title-page">{{ 'ADD_PRODUCT' | translate }}</p>
+      <p class="title-page">{{ "ADD_PRODUCT" | translate }}</p>
     </div>
     <div class="area-product">
       <mat-form-field class="input-style">
-        <mat-label>{{ 'NAME' | translate }}</mat-label>
-        <input matInput [(ngModel)]="product.name"/>
+        <mat-label>{{ "NAME" | translate }}</mat-label>
+        <input matInput [(ngModel)]="product.name" required />
+        <mat-error *ngIf="product.name !== '' && product.name?.length > 3">{{
+          "VALID_EMAIL" | translate
+        }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="input-style">
-        <mat-label>{{ 'CATEGORY' | translate }}</mat-label>
+        <mat-label>{{ "CATEGORY" | translate }}</mat-label>
         <mat-select [(ngModel)]="product.categoryId">
           <mat-option *ngFor="let category of categories" [value]="category.id">
-            {{category.name}}
+            {{ category.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -21,30 +24,16 @@
 
     <div class="area-product">
       <mat-form-field class="input-style">
-        <mat-label>{{ 'PRICE' | translate }}</mat-label>
-        <input matInput [(ngModel)]="product.price"/>
+        <mat-label>{{ "PRICE" | translate }}</mat-label>
+        <input matInput [(ngModel)]="product.price" />
       </mat-form-field>
     </div>
 
     <div class="area-product">
       <mat-form-field appearance="fill" class="description-textarea">
-        <mat-label>{{ 'DESCRIPTION' | translate }}</mat-label>
+        <mat-label>{{ "DESCRIPTION" | translate }}</mat-label>
         <textarea matInput [(ngModel)]="product.description"></textarea>
       </mat-form-field>
-    </div>
-
-    <div>
-      <button
-        mat-raised-button
-        color="basic"
-        class="button-form btn-options"
-        (click)="showUploadImage()"
-      >
-        {{ "UPLOAD_IMAGE" | translate }}
-      </button>
-    </div>
-    <div *ngIf="uploadImage">
-      <app-upload-document imageUrl="/assets/img/default-image.png"></app-upload-document>
     </div>
 
     <div class="buttons-areas">

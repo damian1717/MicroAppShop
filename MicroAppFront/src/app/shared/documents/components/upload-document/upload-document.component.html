@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row content-page">
+    <img [src]="imageUrl" class="img-size" />
+    <input
+      type="file"
+      #Image
+      accept="image/*"
+      (change)="handleFileInput($event.target.files)"
+    />
+    <div class="buttons-areas">
+      <button
+        mat-raised-button
+        color="basic"
+        class="button-form btn-options btn-submit"
+        (click)="uploadFile()"
+      >
+        {{ "ADD_FILE" | translate }}
+      </button>
+    </div>
+  </div>
+</div>
