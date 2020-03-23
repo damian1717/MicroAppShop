@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace MicroApp.Documents.Api.Handler
 {
-    public class GetDocumentHandler : IQueryHandler<GetDocument, DocumentDto>
+    public class GetDocumentByIdHandler : IQueryHandler<GetDocumentById, DocumentDto>
     {
         private readonly IDocumentRepository _documentRepository;
-        public GetDocumentHandler(IDocumentRepository documentRepository)
+        public GetDocumentByIdHandler(IDocumentRepository documentRepository)
         {
             _documentRepository = documentRepository;
         }
-        public async Task<DocumentDto> HandleAsync(GetDocument query)
+        public async Task<DocumentDto> HandleAsync(GetDocumentById query)
         {
             var document = await _documentRepository.GetAsync(query.Id);
             return document == null ? null : new DocumentDto

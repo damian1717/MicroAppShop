@@ -6,33 +6,61 @@
     <div class="area-product">
       <mat-form-field class="input-style">
         <mat-label>{{ "NAME" | translate }}</mat-label>
-        <input matInput [(ngModel)]="product.name" required />
-        <mat-error *ngIf="product.name !== '' && product.name?.length > 3">{{
-          "VALID_EMAIL" | translate
+        <input
+          matInput
+          #name="ngModel"
+          [(ngModel)]="product.name"
+          required
+          minlength="3"
+        />
+        <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">{{
+          "VALID_NAME" | translate
         }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="input-style">
         <mat-label>{{ "CATEGORY" | translate }}</mat-label>
-        <mat-select [(ngModel)]="product.categoryId">
+        <mat-select
+          #category="ngModel"
+          [(ngModel)]="product.categoryId"
+          required
+        >
           <mat-option *ngFor="let category of categories" [value]="category.id">
             {{ category.name }}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="category.invalid">{{
+          "VALID_CATEGORY" | translate
+        }}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="area-product">
       <mat-form-field class="input-style">
         <mat-label>{{ "PRICE" | translate }}</mat-label>
-        <input matInput [(ngModel)]="product.price" />
+        <input matInput #price="ngModel" [(ngModel)]="product.price" required />
+        <mat-error *ngIf="price.invalid && (price.dirty || price.touched)">{{
+          "VALID_PRICE" | translate
+        }}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="area-product">
       <mat-form-field appearance="fill" class="description-textarea">
         <mat-label>{{ "DESCRIPTION" | translate }}</mat-label>
-        <textarea matInput [(ngModel)]="product.description"></textarea>
+        <textarea
+          matInput
+          #description="ngModel"
+          [(ngModel)]="product.description"
+          required
+          minlength="3"
+        ></textarea>
+        <mat-error
+          *ngIf="
+            description.invalid && (description.dirty || description.touched)
+          "
+          >{{ "VALID_DESCRIPTION" | translate }}</mat-error
+        >
       </mat-form-field>
     </div>
 

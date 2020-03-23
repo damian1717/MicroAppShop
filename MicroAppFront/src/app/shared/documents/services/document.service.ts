@@ -18,7 +18,10 @@ export class DocumentService {
     return this.http.post(this.baseUrl, formData);
   }
 
-  getDocument(id: string) {
-    return this.http.get<Document>(`${this.baseUrl}/${id}`);
+  getDocumentById(id: string) {
+    return this.http.get<Document>(`${this.baseUrl}/GetById/${id}`);
+  }
+  getDocumentByExternalId(id: string) {
+    return this.http.get<Document>(`${this.baseUrl}/GetByExternalId/${id}`);
   }
 }

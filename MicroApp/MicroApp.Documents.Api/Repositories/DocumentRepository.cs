@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using MicroApp.Common.Mongo;
 using MicroApp.Documents.Api.Domain;
+using MicroApp.Documents.Api.Queries;
 
 namespace MicroApp.Documents.Api.Repositories
 {
@@ -18,5 +19,8 @@ namespace MicroApp.Documents.Api.Repositories
 
         public async Task<Document> GetAsync(Guid id)
             => await _repository.GetAsync(id);
+
+        public async Task<Document> GetDocumentByExternalIdAsync(GetDocumentByExternalId query)
+        => await _repository.GetAsync(p => p.ExternalId == query.Id.ToString());
     }
 }

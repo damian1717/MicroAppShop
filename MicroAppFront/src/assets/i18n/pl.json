@@ -39,5 +39,10 @@
     "UPLOAD_IMAGE": "Dodaj zdjecie",
     "ADDED_PRODUCT": "Produkt dodany",
     "ERROR": "Ops.. Cos poszlo nie tak",
-    "ADD_FILE": "Dodaj plik"
+    "ADD_FILE": "Dodaj plik",
+    "VALID_NAME": "Wprowadz poprawna nazwe",
+    "VALID_PRICE": "Wprowadz poprawna cene",
+    "VALID_DESCRIPTION": "Wprowadz poprawny opis",
+    "VALID_CATEGORY": "Wprowadz poprawna kategorie",
+    "FILL_PRODUCT": "Wprowadz poprawne informacje o produkcie"
 }

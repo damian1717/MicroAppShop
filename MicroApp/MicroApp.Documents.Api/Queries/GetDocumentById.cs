@@ -4,7 +4,7 @@ using System;
 
 namespace MicroApp.Documents.Api.Queries
 {
-    public class GetDocument : IQuery<DocumentDto>
+    public class GetDocumentById : IQuery<DocumentDto>
     {
         public Guid Id { get; set; }
     }

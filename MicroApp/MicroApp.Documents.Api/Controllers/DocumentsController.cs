@@ -14,8 +14,12 @@ namespace MicroApp.Documents.Api.Controllers
         {
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<DocumentDto>> GetAsync([FromRoute] GetDocument query)
+        [HttpGet("GetById/{id}")]
+        public async Task<ActionResult<DocumentDto>> GetById([FromRoute] GetDocumentById query)
+            => Single(await QueryAsync(query));
+
+        [HttpGet("GetByExternalId/{id}")]
+        public async Task<ActionResult<DocumentDto>> GetByExternalId([FromRoute] GetDocumentByExternalId query)
             => Single(await QueryAsync(query));
     }
 }

@@ -9,7 +9,11 @@ namespace MicroApp.Api.Services
     public interface IDocumentsService
     {
         [AllowAnyStatusCode]
-        [Get("api/documents/{id}")]
-        Task<Document> GetAsync([Path] Guid id);
+        [Get("api/documents/getById/{id}")]
+        Task<Document> GetByIdAsync([Path] Guid id);
+
+        [AllowAnyStatusCode]
+        [Get("api/documents/getByExternalId/{id}")]
+        Task<Document> GetByExternalIdAsync([Path] Guid id);
     }
 }

@@ -13,7 +13,7 @@ export class MainPageComponent implements OnInit {
   constructor(private documentService: DocumentService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.documentService.getDocument('875093f9-7547-45a0-8aeb-e527eef6739a').subscribe(
+    this.documentService.getDocumentByExternalId('6983fcb0-0381-b889-cfce-46543a38daf8').subscribe(
       (data) => {
         console.log(data);
         const objectURL = 'data:image/png;base64,' + data.fileArray;

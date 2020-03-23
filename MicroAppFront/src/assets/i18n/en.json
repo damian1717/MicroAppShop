@@ -39,5 +39,10 @@
     "UPLOAD_IMAGE": "Upload image",
     "ADDED_PRODUCT": "Product added",
     "ERROR": "Ops... Something went wrong",
-    "ADD_FILE": "Add file"
+    "ADD_FILE": "Add file",
+    "VALID_NAME": "Enter valid name",
+    "VALID_PRICE": "Enter valid price",
+    "VALID_DESCRIPTION": "Enter valid description",
+    "VALID_CATEGORY": "Enter valid category",
+    "FILL_PRODUCT": "Enter valid information of product"
 }

@@ -21,9 +21,13 @@ namespace MicroApp.Api.Controllers
             _documentsService = documentsService;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(Guid id)
-            => Single(await _documentsService.GetAsync(id));
+        [HttpGet("GetById/{id}")]
+        public async Task<IActionResult> GetById(Guid id)
+            => Single(await _documentsService.GetByIdAsync(id));
+
+        [HttpGet("GetByExternalId/{id}")]
+        public async Task<IActionResult> GetByExternalId(Guid id)
+            => Single(await _documentsService.GetByExternalIdAsync(id));
 
         [HttpPost]
         public async Task<IActionResult> UploadTemporaryFileAsync()

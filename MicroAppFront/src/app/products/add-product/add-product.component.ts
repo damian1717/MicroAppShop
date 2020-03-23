@@ -3,7 +3,7 @@ import { BaseComponent } from '../../core/base-component/base-component';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product';
 import { ProductCategory } from '../models/productCategory';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Guid } from 'guid-typescript';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.scss']
 })
-export class AddProductComponent extends BaseComponent implements OnInit {
+export class AddProductComponent extends BaseComponent {
 
   product: Product = {
     id: Guid.create().toString(),
@@ -34,11 +34,8 @@ export class AddProductComponent extends BaseComponent implements OnInit {
               public snackBar: MatSnackBar,
               private router: Router) { super(snackBar); }
 
-  ngOnInit() {
-  }
-
   addProduct(product: Product) {
-    this.redirectToUploadDocuments();
+    if (this.validateFields()) {
     this.productService.addProduct(product).subscribe(
       (success) => {
         this.clear();
@@ -49,6 +46,9 @@ export class AddProductComponent extends BaseComponent implements OnInit {
         console.log(error);
         this.openSnackBar(this.translatePipe.transform('ERROR'), this.COLOR_SNACKBAR_RED);
       });
+    } else {
+      this.openSnackBar(this.translatePipe.transform('FILL_PRODUCT'), this.COLOR_SNACKBAR_YELLOW);
+    }
   }
 
   private redirectToUploadDocuments() {
@@ -57,5 +57,53 @@ export class AddProductComponent extends BaseComponent implements OnInit {
 
   clear() {
     this.product = { id: Guid.create().toString(), name: undefined, price: undefined, description: undefined, categoryId: undefined };
+  }
+
+  private validateFields(): boolean {
+    if (!this.validateName()) {
+      return false;
+    }
+
+    if (!this.validateCategory()) {
+      return false;
+    }
+
+    if (!this.validatePrice()) {
+      return false;
+    }
+
+    if (!this.validateDescription()) {
+      return false;
+    }
+
+    return true;
+  }
+
+  private validateName(): boolean {
+    if (this.product.name === undefined || this.product.name.length < 3) {
+      return false;
+    }
+    return true;
+  }
+
+  private validateCategory(): boolean {
+    if (this.product.categoryId === undefined) {
+      return false;
+    }
+    return true;
+  }
+
+  private validatePrice(): boolean {
+    if (this.product.price === undefined) {
+      return false;
+    }
+    return true;
+  }
+
+  private validateDescription(): boolean {
+    if (this.product.description === undefined || this.product.description.length < 3) {
+      return false;
+    }
+    return true;
   }
 }
