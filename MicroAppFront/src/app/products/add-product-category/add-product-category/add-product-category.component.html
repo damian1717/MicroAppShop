@@ -1,0 +1,41 @@
+<div class="container">
+  <div fxLayout="column" class="header-page" fxLayoutGap="15px">
+    <div>
+      <p class="title-page">{{ "ADD_PRODUCT_CATEGORY" | translate }}</p>
+    </div>
+    <div class="area-product-category">
+      <mat-form-field class="input-style">
+        <mat-label>{{ "NAME" | translate }}</mat-label>
+        <input
+          matInput
+          #productCat="ngModel"
+          [(ngModel)]="productCategory.name"
+          required
+          minlength="4"
+        />
+        <mat-error *ngIf="productCat.invalid && (productCat.dirty || productCat.touched)">{{
+          "VALID_NAME" | translate
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="buttons-areas">
+      <button
+        mat-raised-button
+        color="basic"
+        class="button-form btn-options btn-submit"
+        (click)="addProductCategory(productCategory)"
+      >
+        {{ "SUBMIT" | translate }}
+      </button>
+      <button
+        mat-raised-button
+        color="basic"
+        class="button-form btn-options"
+        (click)="clear()"
+      >
+        {{ "CLEAR" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

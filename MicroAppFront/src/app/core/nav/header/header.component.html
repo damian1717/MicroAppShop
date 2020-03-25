@@ -12,6 +12,9 @@
       <li *ngIf="loggedIn()">
         <a routerLink="/add-product">{{ 'ADD_PRODUCT' | translate }}</a>
       </li>
+      <li *ngIf="loggedIn()">
+        <a routerLink="/add-product-category">{{ 'ADD_PRODUCT_CATEGORY' | translate }}</a>
+      </li>
       <li *ngIf="!loggedIn()">
         <a routerLink="/signup">{{ 'SIGNUP' | translate }}</a>
       </li>

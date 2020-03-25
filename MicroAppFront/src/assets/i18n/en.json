@@ -44,5 +44,7 @@
     "VALID_PRICE": "Enter valid price",
     "VALID_DESCRIPTION": "Enter valid description",
     "VALID_CATEGORY": "Enter valid category",
-    "FILL_PRODUCT": "Enter valid information of product"
+    "FILL_PRODUCT": "Enter valid information of product",
+    "ADD_PRODUCT_CATEGORY": "Add product category",
+    "ADDED_PRODUCT_CATEGORY": "Added product category",
 }

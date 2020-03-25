@@ -1,4 +1,6 @@
-﻿using MicroApp.Api.Messages.Commands.Products;
+﻿using MicroApp.Api.Messages.Commands.ProductCategory;
+using MicroApp.Api.Messages.Commands.Products;
+using MicroApp.Common.Mvc;
 using MicroApp.Common.RabbitMq;
 using Microsoft.AspNetCore.Mvc;
 using OpenTracing;
@@ -14,8 +16,12 @@ namespace MicroApp.Api.Controllers
         {
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post(AddProduct command)
-            => await SendAsync(command, resourceId: command.Id, resource: "products");   
+        [HttpPost("AddProduct")]
+        public async Task<IActionResult> AddProduct(AddProduct command)
+            => await SendAsync(command, resourceId: command.Id, resource: "products");
+
+        [HttpPost("AddProductCategory")]
+        public async Task<IActionResult> AddProductCategory(AddProductCategory command)
+            => await SendAsync(command.BindId(c => c.Id), resourceId: command.Id, resource: "products");
     }
 }

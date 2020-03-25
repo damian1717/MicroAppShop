@@ -51,6 +51,7 @@ namespace MicroApp.Products.Api
             builder.AddDispatchers();
             builder.AddMongo();
             builder.AddMongoRepository<Product>("Products");
+            builder.AddMongoRepository<ProductCategory>("ProductCategories");
             builder.AddRabbitMq();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,7 +68,9 @@ namespace MicroApp.Products.Api
 
             app.UseRabbitMq()
                 .SubscribeCommand<AddProduct>(onError: (c, e) =>
-                    new AddProductRejected(c.Id, e.Message, e.Code));
+                    new AddProductRejected(c.Id, e.Message, e.Code))
+                .SubscribeCommand<AddProductCategory>(onError: (c, e) =>
+                    new AddProductCategoryRejected(c.Id, e.Message, e.Code));
 
             app.UseRouting();
 

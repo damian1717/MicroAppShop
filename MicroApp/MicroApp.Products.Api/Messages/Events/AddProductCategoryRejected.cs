@@ -4,14 +4,14 @@ using System;
 
 namespace MicroApp.Products.Api.Messages.Events
 {
-    public class AddProductRejected : IRejectedEvent
+    public class AddProductCategoryRejected : IRejectedEvent
     {
         public Guid Id { get; }
         public string Reason { get; }
         public string Code { get; }
 
         [JsonConstructor]
-        public AddProductRejected(Guid id, string reason, string code)
+        public AddProductCategoryRejected(Guid id, string reason, string code)
         {
             Id = id;
             Reason = reason;
