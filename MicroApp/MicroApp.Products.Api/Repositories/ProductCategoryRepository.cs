@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MicroApp.Common.Mongo;
+using MicroApp.Common.Types;
 using MicroApp.Products.Api.Domain;
+using MicroApp.Products.Api.Queries;
 
 namespace MicroApp.Products.Api.Repositories
 {
@@ -18,5 +20,8 @@ namespace MicroApp.Products.Api.Repositories
 
         public async Task<ProductCategory> GetAsync(Guid id)
             => await _repository.GetAsync(id);
+
+        public async Task<PagedResult<ProductCategory>> BrowseAsync(BrowseProductCategory query)
+            => await _repository.BrowseAsync(q => q.Name != "",query);
     }
 }

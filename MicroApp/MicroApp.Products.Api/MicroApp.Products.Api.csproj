@@ -19,8 +19,4 @@
     <ProjectReference Include="..\MicroApp.Common\MicroApp.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>

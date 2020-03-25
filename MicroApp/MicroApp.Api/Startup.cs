@@ -45,6 +45,7 @@ namespace MicroApp.Api
             });
 
             services.RegisterServiceForwarder<IDocumentsService>("documents-service");
+            services.RegisterServiceForwarder<IProductsService>("products-service");
 
             services.AddControllers().AddNewtonsoftJson();
         }

@@ -1,5 +1,7 @@
 ﻿using MicroApp.Api.Messages.Commands.ProductCategory;
 using MicroApp.Api.Messages.Commands.Products;
+using MicroApp.Api.Queries.Products;
+using MicroApp.Api.Services;
 using MicroApp.Common.Mvc;
 using MicroApp.Common.RabbitMq;
 using Microsoft.AspNetCore.Mvc;
@@ -12,8 +14,10 @@ namespace MicroApp.Api.Controllers
     [ApiController]
     public class ProductsController : BaseController
     {
-        public ProductsController(IBusPublisher busPublisher, ITracer tracer) : base(busPublisher, tracer)
+        private readonly IProductsService _productsService;
+        public ProductsController(IBusPublisher busPublisher, ITracer tracer, IProductsService productsService) : base(busPublisher, tracer)
         {
+            _productsService = productsService;
         }
 
         [HttpPost("AddProduct")]
@@ -23,5 +27,9 @@ namespace MicroApp.Api.Controllers
         [HttpPost("AddProductCategory")]
         public async Task<IActionResult> AddProductCategory(AddProductCategory command)
             => await SendAsync(command.BindId(c => c.Id), resourceId: command.Id, resource: "products");
+
+        [HttpGet("GetAllProductCategories")]
+        public async Task<IActionResult> GetAllProductCategories([FromQuery] BrowseProductCategory query)
+            => Collection(await _productsService.GetAllProductCategories(query));
     }
 }
