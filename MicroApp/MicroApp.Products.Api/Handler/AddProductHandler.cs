@@ -20,7 +20,7 @@ namespace MicroApp.Products.Api.Handler
         }
         public async Task HandleAsync(AddProduct command, ICorrelationContext context)
         {
-            var product = new Product(command.Id, command.Name, command.Description, command.Price);
+            var product = new Product(command.Id, command.Name, command.Description, command.Price, command.CategoryId);
             await _productRepository.AddAsync(product);
             await _busPublisher.PublishAsync(new ProductAdded(command.Id, command.Name, command.Description, command.Price), context);
         }

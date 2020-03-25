@@ -25,7 +25,7 @@
           [(ngModel)]="product.categoryId"
           required
         >
-          <mat-option *ngFor="let category of categories" [value]="category.id">
+          <mat-option *ngFor="let category of productCategories$ | async" [value]="category.id">
             {{ category.name }}
           </mat-option>
         </mat-select>

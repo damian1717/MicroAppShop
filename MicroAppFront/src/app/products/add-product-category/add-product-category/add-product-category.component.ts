@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { TranslatePipe } from 'src/app/shared/translate/translate.pipe';
 import { MatSnackBar } from '@angular/material';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-product-category',
