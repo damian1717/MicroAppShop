@@ -31,8 +31,6 @@ export class AddProductComponent extends BaseComponent {
               private router: Router) { super(snackBar); }
 
   addProduct(product: Product) {
-    console.log(product);
-    /*
     if (this.validateFields()) {
     this.productService.addProduct(product).subscribe(
       (success) => {
@@ -46,7 +44,7 @@ export class AddProductComponent extends BaseComponent {
       });
     } else {
       this.openSnackBar(this.translatePipe.transform('FILL_PRODUCT'), this.COLOR_SNACKBAR_YELLOW);
-    }*/
+    }
   }
 
   private redirectToUploadDocuments() {
