@@ -1,3 +1,4 @@
+import { ProductService } from './../../../products/services/product.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslatePipe } from 'src/app/shared/translate/translate.pipe';
@@ -14,12 +15,15 @@ import { AuthService } from 'src/app/core/auth/services/auth.service';
 export class HeaderComponent extends BaseComponent implements OnInit {
 
   @Output() sidenavToggle = new EventEmitter<void>();
+  productCategories$ = this.productService.productCategories$;
+
   constructor(
     private authService: AuthService,
     public snackBar: MatSnackBar,
     private translate: TranslateService,
     private translatePipe: TranslatePipe,
-    private router: Router) { super(snackBar); }
+    private router: Router,
+    private productService: ProductService) { super(snackBar); }
 
   ngOnInit() {
   }
@@ -41,5 +45,4 @@ export class HeaderComponent extends BaseComponent implements OnInit {
     this.router.navigate(['/']);
     this.openSnackBar(this.translatePipe.transform('LOGGED_OUT'), this.COLOR_SNACKBAR_GREEN);
   }
-
 }

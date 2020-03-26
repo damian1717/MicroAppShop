@@ -1,8 +1,7 @@
-import { TranslatePipe } from '../../shared/translate/translate.pipe';
-import { BaseComponent } from '../../core/base-component/base-component';
-import { ProductService } from '../services/product.service';
-import { Product } from '../models/product';
-import { ProductCategory } from '../models/productCategory';
+import { TranslatePipe } from '../../../shared/translate/translate.pipe';
+import { BaseComponent } from '../../../core/base-component/base-component';
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../models/product';
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Guid } from 'guid-typescript';

@@ -12,5 +12,9 @@ namespace MicroApp.Api.Services
         [AllowAnyStatusCode]
         [Get("api/products/GetAllProductCategories")]
         Task<PagedResult<ProductCategory>> GetAllProductCategories([Query] BrowseProductCategory query);
+
+        [AllowAnyStatusCode]
+        [Get("api/products/GetAllProductByCategoryId")]
+        Task<PagedResult<Product>> GetAllProductByCategoryId([Query] BrowseProduct query);
     }
 }

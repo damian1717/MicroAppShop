@@ -31,5 +31,9 @@ namespace MicroApp.Api.Controllers
         [HttpGet("GetAllProductCategories")]
         public async Task<IActionResult> GetAllProductCategories([FromQuery] BrowseProductCategory query)
             => Collection(await _productsService.GetAllProductCategories(query));
+
+        [HttpGet("GetAllProductByCategoryId")]
+        public async Task<IActionResult> GetAllProductByCategoryId([FromQuery] BrowseProduct query)
+            => Collection(await _productsService.GetAllProductByCategoryId(query));
     }
 }

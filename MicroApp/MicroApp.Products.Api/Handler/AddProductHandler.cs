@@ -22,7 +22,7 @@ namespace MicroApp.Products.Api.Handler
         {
             var product = new Product(command.Id, command.Name, command.Description, command.Price, command.CategoryId);
             await _productRepository.AddAsync(product);
-            await _busPublisher.PublishAsync(new ProductAdded(command.Id, command.Name, command.Description, command.Price), context);
+            await _busPublisher.PublishAsync(new ProductAdded(command.Id, command.Name, command.Description, command.Price, command.CategoryId), context);
         }
     }
 }

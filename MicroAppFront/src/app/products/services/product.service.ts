@@ -29,4 +29,8 @@ export class ProductService {
   addProductCategory(productCategory?: ProductCategory) {
     return this.http.post(`${this.baseUrl}/AddProductCategory`, productCategory);
   }
+
+  getAllProductByCategoryId(id: string) {
+    return this.http.get<Product[]>(`${this.baseUrl}/GetAllProductByCategoryId?Id=${id}`);
+  }
 }

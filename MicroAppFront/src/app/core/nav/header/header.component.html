@@ -15,21 +15,28 @@
       <li *ngIf="loggedIn()">
         <a routerLink="/add-product-category">{{ 'ADD_PRODUCT_CATEGORY' | translate }}</a>
       </li>
-      <li *ngIf="!loggedIn()">
-        <a routerLink="/signup">{{ 'SIGNUP' | translate }}</a>
+      <li *ngIf="loggedIn()">
+        <button mat-button [matMenuTriggerFor]="belowMenu" class="item-menu">{{ 'PRODUCTS' | translate }}</button>
+        <mat-menu #belowMenu="matMenu" yPosition="below">
+          <button mat-menu-item *ngFor="let category of productCategories$ | async" [routerLink]="['/products', category.name, category.id ]">{{ category.name }}</button>
+        </mat-menu>
       </li>
       <li *ngIf="!loggedIn()">
-        <a routerLink="/login">{{ 'LOGIN' | translate }}</a>
+        <button mat-button routerLink="/signup" class="item-menu">{{ 'SIGNUP' | translate }}</button>
+      </li>
+      <li *ngIf="!loggedIn()">
+        <button mat-button routerLink="/login" class="item-menu">{{ 'LOGIN' | translate }}</button>
       </li>
       <li *ngIf="loggedIn()">
-        <a (click)="logout()">{{ 'LOGOUT' | translate }}</a>
+        <button mat-button (click)="logout()" class="item-menu">{{ 'LOGOUT' | translate }}</button>
       </li>
       <li>
-        <button (click)="setLang('pl')">PL</button>
+        <button mat-button (click)="setLang('pl')" class="item-menu">PL</button>
       </li>
       <li>
-        <button (click)="setLang('en')">EN</button>
+        <button mat-button (click)="setLang('en')" class="item-menu">EN</button>
       </li>
     </ul>
   </div>
 </mat-toolbar>
+

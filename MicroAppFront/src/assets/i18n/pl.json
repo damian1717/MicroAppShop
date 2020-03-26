@@ -46,5 +46,6 @@
     "VALID_CATEGORY": "Wprowadz poprawna kategorie",
     "FILL_PRODUCT": "Wprowadz poprawne informacje o produkcie",
     "ADD_PRODUCT_CATEGORY": "Dodaj kategorie produktu",
-    "ADDED_PRODUCT_CATEGORY": "Dodana kategoria produktu"
+    "ADDED_PRODUCT_CATEGORY": "Dodana kategoria produktu",
+    "PRODUCTS": "Produkty"
 }
