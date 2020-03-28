@@ -33,7 +33,6 @@ export class AddProductComponent extends BaseComponent {
     if (this.validateFields()) {
     this.productService.addProduct(product).subscribe(
       (success) => {
-        this.clear();
         this.redirectToUploadDocuments();
         this.openSnackBar(this.translatePipe.transform('ADDED_PRODUCT'), this.COLOR_SNACKBAR_GREEN);
       },

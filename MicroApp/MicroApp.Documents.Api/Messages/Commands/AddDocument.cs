@@ -9,10 +9,10 @@ namespace MicroApp.Documents.Api.Messages.Commands
         public Guid Id { get; }
         public string FileName { get; }
         public byte[] FileArray { get; }
-        public string ExternalId { get; }
+        public Guid ExternalId { get; }
 
         [JsonConstructor]
-        public AddDocument(Guid id, string fileName, byte[] fileArray, string externalId)
+        public AddDocument(Guid id, string fileName, byte[] fileArray, Guid externalId)
         {
             Id = id;
             FileName = fileName;

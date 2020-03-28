@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MicroApp.Api.Models.Documents;
+using System;
 
 namespace MicroApp.Api.Models.Products
 {
@@ -9,5 +10,6 @@ namespace MicroApp.Api.Models.Products
         public string Description { get; set; }
         public decimal Price { get; set; }
         public Guid CategoryId { get; set; }
+        public Document Document { get; set; }
     }
 }

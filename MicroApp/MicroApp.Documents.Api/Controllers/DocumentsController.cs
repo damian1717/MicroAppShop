@@ -21,5 +21,9 @@ namespace MicroApp.Documents.Api.Controllers
         [HttpGet("GetByExternalId/{id}")]
         public async Task<ActionResult<DocumentDto>> GetByExternalId([FromRoute] GetDocumentByExternalId query)
             => Single(await QueryAsync(query));
+
+        [HttpGet("GetAllDocumentsByExternalId")]
+        public async Task<ActionResult<DocumentDto[]>> GetAllDocumentsByExternalId([FromQuery] BrowseDocumentsByExternalId query)
+            => await QueryAsync(query);
     }
 }
