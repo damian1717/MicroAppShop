@@ -1,3 +1,4 @@
+import { Document } from './../../shared/documents/models/document';
 import { ProductCategory } from './productCategory';
 
 export interface Product {
@@ -7,4 +8,6 @@ export interface Product {
   description: string;
   categoryId: number;
   productCategory?: ProductCategory;
+  document?: Document;
+  image?: any;
 }

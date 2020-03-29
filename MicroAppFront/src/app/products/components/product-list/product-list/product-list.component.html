@@ -1,1 +1,16 @@
-<p>product-list works!</p>
+<div fxFill fxLayout="column" fxLayoutAlign="space-between">
+  <div fxLayout="row wrap">
+    <ng-container *ngFor="let image of data">
+        <img [src]='image.image'>
+
+    </ng-container>
+  </div>
+
+  <mat-paginator [length]="data.length"
+                [pageSize]="size"
+                [pageIndex]="page"
+                [pageSizeOptions]="[4, 8, 12]"
+                (page)="getData($event)">
+  </mat-paginator>
+
+</div>

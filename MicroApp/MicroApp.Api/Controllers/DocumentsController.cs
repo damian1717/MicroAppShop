@@ -34,10 +34,12 @@ namespace MicroApp.Api.Controllers
         {
             var file = HttpContext.Request.Form.Files[0];
             var guid = HttpContext.Request.Form["Guid"];
-
-            MemoryStream ms = new MemoryStream(new byte[file.Length]);
-
-            var command = new AddDocument(file.FileName, ms.ToArray(), guid);
+            AddDocument command = null;
+            using (var ms = new MemoryStream())
+            {
+                file.CopyTo(ms);
+                command = new AddDocument(file.FileName, ms.ToArray(), guid);
+            }
 
             return await SendAsync(command.BindId(c => c.Id), resourceId: command.Id, resource: "documents");
         }
