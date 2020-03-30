@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { ProductCategory } from '../models/productCategory';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { ProductsByCategoryRequest } from '../models/productsByCategoryRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,8 @@ export class ProductService {
     return this.http.post(`${this.baseUrl}/AddProductCategory`, productCategory);
   }
 
-  getAllProductByCategoryId(id: string) {
-    return this.http.get<Product[]>(`${this.baseUrl}/GetAllProductByCategoryId?Id=${id}`);
+  getAllProductByCategoryId(request: ProductsByCategoryRequest) {
+    return this.http.get<any>(`${this.baseUrl}/GetAllProductByCategoryId?Id=${request.categoryId}&page=${request.page}`,
+     {observe: 'response'});
   }
 }

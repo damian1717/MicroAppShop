@@ -1,3 +1,4 @@
+import { ProductsByCategoryRequest } from './../../../models/productsByCategoryRequest';
 import { MatSnackBar } from '@angular/material';
 import { BaseComponent } from './../../../../core/base-component/base-component';
 import { ProductService } from './../../../services/product.service';
@@ -16,45 +17,37 @@ export class ProductListComponent extends BaseComponent implements OnInit {
   categoryId: string;
   data: Product[] = new Array<Product>();
   page = 0;
-  size = 4;
+  size = 10;
+  totalPage: any;
+  request: ProductsByCategoryRequest = { categoryId: undefined, page: undefined };
   constructor(private route: ActivatedRoute,
               private sanitizer: DomSanitizer,
               private productService: ProductService,
               public snackBar: MatSnackBar) { super(snackBar); }
 
   ngOnInit() {
-    this.categoryId = this.route.snapshot.paramMap.get('id');
-    this.getAllProducts(this.categoryId);
-
-
+    this.request.page = this.page + 1;
+    this.request.categoryId = this.route.snapshot.paramMap.get('id');
+    this.getAllProducts(this.request);
   }
 
-  private getAllProducts(categoryId: string) {
-    this.productService.getAllProductByCategoryId(categoryId).subscribe(
+  private getAllProducts(request: ProductsByCategoryRequest) {
+    this.productService.getAllProductByCategoryId(request).subscribe(
       (data) => {
-        console.log(data);
-
-        data.forEach(d => {
+        this.totalPage = data.headers.get('X-Total-Count');
+        data.body.forEach(d => {
           const objectURL = 'data:image/png;base64,' + d.document.fileArray;
           d.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
         });
-        console.log(data);
-        this.data = data;
-        // this.getData({pageIndex: this.page, pageSize: this.size}, data);
+        this.data = data.body;
       },
       (error) => console.log(error)
     );
   }
 
-  getData(obj) {
-    let index=0,
-        startingIndex=obj.pageIndex * obj.pageSize,
-        endingIndex=startingIndex + obj.pageSize;
-
-    this.data = this.data.filter(() => {
-      index++;
-      return (index > startingIndex && index <= endingIndex) ? true : false;
-    });
+  getData(event) {
+    this.request.page = event.pageIndex + 1;
+    this.data = [];
+    this.getAllProducts(this.request);
   }
-
 }

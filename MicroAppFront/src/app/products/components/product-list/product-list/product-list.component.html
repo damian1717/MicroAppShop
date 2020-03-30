@@ -1,16 +1,18 @@
 <div fxFill fxLayout="column" fxLayoutAlign="space-between">
-  <div fxLayout="row wrap">
+  <div *ngIf="data.length !== 0" fxLayout="row wrap">
     <ng-container *ngFor="let image of data">
-        <img [src]='image.image'>
-
+      <img [src]="image.image" />
     </ng-container>
   </div>
+  <div *ngIf="data.length === 0" class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
 
-  <mat-paginator [length]="data.length"
-                [pageSize]="size"
-                [pageIndex]="page"
-                [pageSizeOptions]="[4, 8, 12]"
-                (page)="getData($event)">
+  <mat-paginator
+    [length]="totalPage"
+    [pageSize]="size"
+    [pageIndex]="page"
+    (page)="getData($event)"
+  >
   </mat-paginator>
-
 </div>
