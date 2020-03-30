@@ -1,8 +1,13 @@
 <div fxFill fxLayout="column" fxLayoutAlign="space-between">
   <div *ngIf="data.length !== 0" fxLayout="row wrap">
+    <div class="product-list-container">
     <ng-container *ngFor="let image of data">
-      <img [src]="image.image" />
+      <div class="img-container">
+        <img [src]="image.image" id="img"/>
+        <div class="overlay">{{ image.name }}</div>
+      </div>
     </ng-container>
+  </div>
   </div>
   <div *ngIf="data.length === 0" class="spinner">
     <mat-spinner></mat-spinner>
@@ -13,6 +18,7 @@
     [pageSize]="size"
     [pageIndex]="page"
     (page)="getData($event)"
+    class="paginator"
   >
   </mat-paginator>
 </div>

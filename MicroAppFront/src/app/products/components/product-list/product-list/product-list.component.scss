@@ -1,8 +1,9 @@
 img {
-  max-height: 200px;
-  max-width: 200px;
-  margin-left: 8px;
-  margin-bottom: 8px;
+  height: 300px;
+  width: 300px;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 50px;
 }
 
 .spinner {
@@ -11,4 +12,65 @@ img {
   padding-bottom: 200px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.product-list-container {
+  padding-top: 80px;
+  text-align: center;
+}
+
+#img:hover {
+  opacity: 0.4;
+}
+
+.img-container {
+  display: inline-block;
+  position: relative;
+}
+.overlay {
+  position: absolute;
+  bottom: 52px;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 300px;
+  transition: .5s ease;
+  opacity:0;
+  color: white;
+  font-size: 24px;
+  margin-left: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.img-container:hover .overlay {
+  opacity: 1;
+}
+
+.paginator {
+  margin-top: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+  img {
+    height: 300px;
+    width: 300px;
+    margin-bottom: 40px;
+  }
+
+  .overlay {
+    position: absolute;
+    bottom: 44px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 300px;
+    transition: .5s ease;
+    opacity:0;
+    color: white;
+    font-size: 24px;
+    margin-left: 30px;
+    padding-top: 20px;
+  padding-bottom: 20px;
+  }
 }
