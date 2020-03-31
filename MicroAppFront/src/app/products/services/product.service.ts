@@ -31,6 +31,10 @@ export class ProductService {
     return this.http.post(`${this.baseUrl}/AddProductCategory`, productCategory);
   }
 
+  getProductById(id: string) {
+    return this.http.get<Product>(`${this.baseUrl}/GetProductById/${id}`);
+  }
+
   getAllProductByCategoryId(request: ProductsByCategoryRequest) {
     return this.http.get<any>(`${this.baseUrl}/GetAllProductByCategoryId?Id=${request.categoryId}&page=${request.page}`,
      {observe: 'response'});

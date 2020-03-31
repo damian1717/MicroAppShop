@@ -1,0 +1,12 @@
+<div *ngIf="product.id !== undefined" class="product-details-container">
+  <img [src]="product.image" id="img"/>
+  <div class="text-container">
+    <p>{{ product.name }}</p>
+    <p>{{ product.description }}</p>
+    <p>{{ product.price }}</p>
+  </div>
+</div>
+
+<div *ngIf="product.id === undefined" class="spinner">
+  <mat-spinner></mat-spinner>
+</div>

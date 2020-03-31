@@ -1,9 +1,9 @@
-import { ProductsByCategoryRequest } from './../../../models/productsByCategoryRequest';
+import { ProductsByCategoryRequest } from '../../models/productsByCategoryRequest';
 import { MatSnackBar } from '@angular/material';
-import { BaseComponent } from './../../../../core/base-component/base-component';
-import { ProductService } from './../../../services/product.service';
+import { BaseComponent } from '../../../core/base-component/base-component';
+import { ProductService } from '../../services/product.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Product } from 'src/app/products/models/product';
 
@@ -23,6 +23,7 @@ export class ProductListComponent extends BaseComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private sanitizer: DomSanitizer,
               private productService: ProductService,
+              private router: Router,
               public snackBar: MatSnackBar) { super(snackBar); }
 
   ngOnInit() {
@@ -49,5 +50,9 @@ export class ProductListComponent extends BaseComponent implements OnInit {
     this.request.page = event.pageIndex + 1;
     this.data = [];
     this.getAllProducts(this.request);
+  }
+
+  redirectToProductDetails(product: Product) {
+    this.router.navigate(['product/' + product.id]);
   }
 }

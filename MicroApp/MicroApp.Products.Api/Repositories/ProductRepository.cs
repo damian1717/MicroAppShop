@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using MicroApp.Common.Mongo;
 using MicroApp.Common.Types;
 using MicroApp.Products.Api.Domain;
@@ -17,6 +18,9 @@ namespace MicroApp.Products.Api.Repositories
 
         public async Task AddAsync(Product product)
             => await _repository.AddAsync(product);
+
+        public async Task<Product> GetAsync(Guid id)
+            => await _repository.GetAsync(id);
 
         public async Task<PagedResult<Product>> BrowseAsync(BrowseProduct query)
             => await _repository.BrowseAsync(q => q.CategoryId == query.Id, query);

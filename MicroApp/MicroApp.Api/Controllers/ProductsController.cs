@@ -33,6 +33,14 @@ namespace MicroApp.Api.Controllers
         public async Task<IActionResult> AddProduct(AddProduct command)
             => await SendAsync(command, resourceId: command.Id, resource: "products");
 
+        [HttpGet("GetProductById/{id}")]
+        public async Task<IActionResult> GetProductById(Guid id)
+        {
+            var product = await _productsService.GetProductById(id);
+            if (product != null) product.Document = await _documentsService.GetByExternalIdAsync(product.Id);
+            return Single(product);
+        }
+
         [HttpPost("AddProductCategory")]
         public async Task<IActionResult> AddProductCategory(AddProductCategory command)
             => await SendAsync(command.BindId(c => c.Id), resourceId: command.Id, resource: "products");

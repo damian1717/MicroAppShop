@@ -1,10 +1,10 @@
 <div fxFill fxLayout="column" fxLayoutAlign="space-between">
   <div *ngIf="data.length !== 0" fxLayout="row wrap">
     <div class="product-list-container">
-    <ng-container *ngFor="let image of data">
-      <div class="img-container">
-        <img [src]="image.image" id="img"/>
-        <div class="overlay">{{ image.name }}</div>
+    <ng-container *ngFor="let product of data">
+      <div class="img-container" (click)="redirectToProductDetails(product)">
+        <img [src]="product.image" id="img"/>
+        <div class="overlay">{{ product.name }}</div>
       </div>
     </ng-container>
   </div>

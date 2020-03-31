@@ -15,6 +15,10 @@ namespace MicroApp.Products.Api.Controllers
         {
         }
 
+        [HttpGet("GetProductById/{id}")]
+        public async Task<ActionResult<ProductDto>> GetProductById([FromRoute] GetProduct query)
+            => Single(await QueryAsync(query));
+
         [HttpGet("GetAllProductCategories")]
         public async Task<ActionResult<PagedResult<ProductCategoryDto>>> Get([FromQuery] BrowseProductCategory query)
             => Collection(await QueryAsync(query));
