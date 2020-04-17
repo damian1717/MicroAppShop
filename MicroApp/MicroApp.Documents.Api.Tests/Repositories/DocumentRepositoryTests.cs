@@ -9,10 +9,10 @@ namespace MicroApp.Documents.Api.Repositories
 {
     public class DocumentRepositoryTests
     {
-        protected readonly IDocumentRepository _repository;
-        protected Guid _guid;
-        protected Document _document;
-        protected Mock<IMongoRepository<Document>> _mockMongoRepository;
+        private readonly IDocumentRepository _repository;
+        private Guid _guid;
+        private Document _document;
+        private Mock<IMongoRepository<Document>> _mockMongoRepository;
         public DocumentRepositoryTests()
         {
             _guid = Guid.NewGuid();
