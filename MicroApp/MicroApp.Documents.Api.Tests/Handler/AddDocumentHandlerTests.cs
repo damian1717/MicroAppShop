@@ -2,6 +2,7 @@
 using MicroApp.Documents.Api.Domain;
 using MicroApp.Documents.Api.Messages.Commands;
 using MicroApp.Documents.Api.Repositories;
+using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.Threading.Tasks;
@@ -15,12 +16,14 @@ namespace MicroApp.Documents.Api.Handler
         private readonly Mock<IBusPublisher> _busPublisher;
         private readonly Mock<ICorrelationContext> _context;
         private readonly Guid _guid;
+        private readonly Mock<ILogger<AddDocumentHandler>> _logger;
         public AddDocumentHandlerTests()
         {
             _guid = Guid.NewGuid();
             _documentRepository = new Mock<IDocumentRepository>();
             _busPublisher = new Mock<IBusPublisher>();
             _context = new Mock<ICorrelationContext>();
+            _logger = new Mock<ILogger<AddDocumentHandler>>();
         }
 
         [Fact]
@@ -32,7 +35,7 @@ namespace MicroApp.Documents.Api.Handler
             _documentRepository.Setup(r => r.AddAsync(document)).Returns(Task.CompletedTask);
 
             //Act
-            var handler = new AddDocumentHandler(_busPublisher.Object, _documentRepository.Object);
+            var handler = new AddDocumentHandler(_busPublisher.Object, _documentRepository.Object, _logger.Object);
             await handler.HandleAsync(command, _context.Object);
 
             //Assert

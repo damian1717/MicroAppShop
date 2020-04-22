@@ -3,6 +3,7 @@ using MicroApp.Products.Api.Domain;
 using MicroApp.Products.Api.Handler;
 using MicroApp.Products.Api.Queries;
 using MicroApp.Products.Api.Repositories;
+using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace MicroApp.Products.Api.Tests.Handler
     public class BrowseProductHandlerTests
     {
         private readonly Mock<IProductRepository> _productRepository;
+        private readonly Mock<ILogger<BrowseProductHandler>> _logger;
         private readonly Guid _guid;
         private readonly BrowseProduct _query;
         public BrowseProductHandlerTests()
@@ -21,6 +23,7 @@ namespace MicroApp.Products.Api.Tests.Handler
             _guid = Guid.NewGuid();
             _query = new BrowseProduct();
             _productRepository = new Mock<IProductRepository>();
+            _logger = new Mock<ILogger<BrowseProductHandler>>();
         }
 
         [Fact]
@@ -36,7 +39,7 @@ namespace MicroApp.Products.Api.Tests.Handler
             _productRepository.Setup(r => r.BrowseAsync(_query)).ReturnsAsync(pageProducts);
 
             //Act
-            var handler = new BrowseProductHandler(_productRepository.Object);
+            var handler = new BrowseProductHandler(_productRepository.Object, _logger.Object);
             var result = await handler.HandleAsync(_query);
 
             var productList = new List<Product>();
@@ -64,7 +67,7 @@ namespace MicroApp.Products.Api.Tests.Handler
             _productRepository.Setup(r => r.BrowseAsync(_query)).ReturnsAsync(pageProducts);
 
             //Act
-            var handler = new BrowseProductHandler(_productRepository.Object);
+            var handler = new BrowseProductHandler(_productRepository.Object, _logger.Object);
             var result = await handler.HandleAsync(_query);
 
             var productList = new List<Product>();

@@ -2,6 +2,7 @@
 using MicroApp.Products.Api.Handler;
 using MicroApp.Products.Api.Queries;
 using MicroApp.Products.Api.Repositories;
+using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.Threading.Tasks;
@@ -12,12 +13,14 @@ namespace MicroApp.Products.Api.Tests.Handler
     public class GetProductHandlerTests
     {
         private readonly Mock<IProductRepository> _productRepository;
+        private readonly Mock<ILogger<GetProductHandler>> _logger;
         private readonly Guid _guid;
 
         public GetProductHandlerTests()
         {
             _guid = Guid.NewGuid();
             _productRepository = new Mock<IProductRepository>();
+            _logger = new Mock<ILogger<GetProductHandler>>();
         }
 
         [Fact]
@@ -30,7 +33,7 @@ namespace MicroApp.Products.Api.Tests.Handler
             query.Id = _guid;
 
             //Act
-            var handler = new GetProductHandler(_productRepository.Object);
+            var handler = new GetProductHandler(_productRepository.Object, _logger.Object);
             var result = await handler.HandleAsync(query);
 
             //Assert
@@ -47,7 +50,7 @@ namespace MicroApp.Products.Api.Tests.Handler
             var query = new GetProduct();
 
             //Act
-            var handler = new GetProductHandler(_productRepository.Object);
+            var handler = new GetProductHandler(_productRepository.Object, _logger.Object);
             var result = await handler.HandleAsync(query);
 
             //Assert

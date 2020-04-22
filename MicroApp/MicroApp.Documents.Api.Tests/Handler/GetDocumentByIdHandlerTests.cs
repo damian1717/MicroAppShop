@@ -1,6 +1,7 @@
 ﻿using MicroApp.Documents.Api.Domain;
 using MicroApp.Documents.Api.Queries;
 using MicroApp.Documents.Api.Repositories;
+using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.Threading.Tasks;
@@ -12,11 +13,13 @@ namespace MicroApp.Documents.Api.Handler
     {
         private readonly Mock<IDocumentRepository> _documentRepository;
         private readonly Guid _guid;
+        private readonly Mock<ILogger<GetDocumentByIdHandler>> _logger;
 
         public GetDocumentByIdHandlerTests()
         {
             _guid = Guid.NewGuid();
             _documentRepository = new Mock<IDocumentRepository>();
+            _logger = new Mock<ILogger<GetDocumentByIdHandler>>();
         }
 
         [Fact]
@@ -29,7 +32,7 @@ namespace MicroApp.Documents.Api.Handler
             query.Id = _guid;
 
             //Act
-            var handler = new GetDocumentByIdHandler(_documentRepository.Object);
+            var handler = new GetDocumentByIdHandler(_documentRepository.Object, _logger.Object);
             var result = await handler.HandleAsync(query);
 
             //Assert
@@ -46,7 +49,7 @@ namespace MicroApp.Documents.Api.Handler
             var query = new GetDocumentById();
 
             //Act
-            var handler = new GetDocumentByIdHandler(_documentRepository.Object);
+            var handler = new GetDocumentByIdHandler(_documentRepository.Object, _logger.Object);
             var result = await handler.HandleAsync(query);
 
             //Assert

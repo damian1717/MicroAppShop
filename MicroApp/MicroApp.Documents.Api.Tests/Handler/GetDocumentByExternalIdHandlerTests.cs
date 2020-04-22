@@ -1,6 +1,7 @@
 ﻿using MicroApp.Documents.Api.Domain;
 using MicroApp.Documents.Api.Queries;
 using MicroApp.Documents.Api.Repositories;
+using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace MicroApp.Documents.Api.Handler
         private readonly Mock<IDocumentRepository> _documentRepository;
         private readonly Guid _guid;
         private readonly GetDocumentByExternalId _query;
+        private readonly Mock<ILogger<GetDocumentByExternalIdHandler>> _logger;
 
         public GetDocumentByExternalIdHandlerTests()
         {
@@ -20,6 +22,7 @@ namespace MicroApp.Documents.Api.Handler
             _query = new GetDocumentByExternalId();
             _query.Id = _guid;
             _documentRepository = new Mock<IDocumentRepository>();
+            _logger = new Mock<ILogger<GetDocumentByExternalIdHandler>>();
         }
 
         [Fact]
@@ -30,7 +33,7 @@ namespace MicroApp.Documents.Api.Handler
             _documentRepository.Setup(r => r.GetDocumentByExternalIdAsync(_query)).ReturnsAsync(document);
 
             //Act
-            var handler = new GetDocumentByExternalIdHandler(_documentRepository.Object);
+            var handler = new GetDocumentByExternalIdHandler(_documentRepository.Object, _logger.Object);
             var result = await handler.HandleAsync(_query);
 
             //Assert
@@ -46,7 +49,7 @@ namespace MicroApp.Documents.Api.Handler
             _documentRepository.Setup(r => r.GetDocumentByExternalIdAsync(_query)).Returns(Task.FromResult((Document)null));
 
             //Act
-            var handler = new GetDocumentByExternalIdHandler(_documentRepository.Object);
+            var handler = new GetDocumentByExternalIdHandler(_documentRepository.Object, _logger.Object);
             var result = await handler.HandleAsync(_query);
 
             //Assert

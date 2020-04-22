@@ -3,6 +3,7 @@ using MicroApp.Products.Api.Domain;
 using MicroApp.Products.Api.Handler;
 using MicroApp.Products.Api.Queries;
 using MicroApp.Products.Api.Repositories;
+using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace MicroApp.Products.Api.Tests.Handler
     public class BrowseProductCategoryHandlerTests
     {
         private readonly Mock<IProductCategoryRepository> _productCategoryRepository;
+        private readonly Mock<ILogger<BrowseProductCategoryHandler>> _logger;
         private readonly Guid _guid;
         private ProductCategory _productCategory;
         private readonly BrowseProductCategory _query;
@@ -22,7 +24,8 @@ namespace MicroApp.Products.Api.Tests.Handler
             _guid = Guid.NewGuid();
             _productCategory = new ProductCategory(_guid, "");
             _query = new BrowseProductCategory();
-            _productCategoryRepository = new Mock<IProductCategoryRepository>(); ;
+            _productCategoryRepository = new Mock<IProductCategoryRepository>();
+            _logger = new Mock<ILogger<BrowseProductCategoryHandler>>();
         }
 
         [Fact]
@@ -35,7 +38,7 @@ namespace MicroApp.Products.Api.Tests.Handler
             _productCategoryRepository.Setup(r => r.BrowseAsync(_query)).ReturnsAsync(pageProductCategories);
 
             //Act
-            var handler = new BrowseProductCategoryHandler(_productCategoryRepository.Object);
+            var handler = new BrowseProductCategoryHandler(_productCategoryRepository.Object, _logger.Object);
             var result = await handler.HandleAsync(_query);
 
             var productCategoryList = new List<ProductCategory>();
@@ -60,7 +63,7 @@ namespace MicroApp.Products.Api.Tests.Handler
             _productCategoryRepository.Setup(r => r.BrowseAsync(_query)).ReturnsAsync(pageProductCategories);
 
             //Act
-            var handler = new BrowseProductCategoryHandler(_productCategoryRepository.Object);
+            var handler = new BrowseProductCategoryHandler(_productCategoryRepository.Object, _logger.Object);
             var result = await handler.HandleAsync(_query);
 
             var productCategoryList = new List<ProductCategory>();

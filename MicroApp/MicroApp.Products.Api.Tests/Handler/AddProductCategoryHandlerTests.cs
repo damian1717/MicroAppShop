@@ -3,6 +3,7 @@ using MicroApp.Products.Api.Domain;
 using MicroApp.Products.Api.Handler;
 using MicroApp.Products.Api.Messages.Commands;
 using MicroApp.Products.Api.Repositories;
+using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace MicroApp.Products.Api.Tests.Handler
         private readonly Mock<IProductCategoryRepository> _productCategoryRepository;
         private readonly Mock<IBusPublisher> _busPublisher;
         private readonly Mock<ICorrelationContext> _context;
+        private readonly Mock<ILogger<AddProductCategoryHandler>> _logger;
         private readonly Guid _guid;
         public AddProductCategoryHandlerTests()
         {
@@ -22,6 +24,7 @@ namespace MicroApp.Products.Api.Tests.Handler
             _productCategoryRepository = new Mock<IProductCategoryRepository>();
             _busPublisher = new Mock<IBusPublisher>();
             _context = new Mock<ICorrelationContext>();
+            _logger = new Mock<ILogger<AddProductCategoryHandler>>();
         }
 
         [Fact]
@@ -33,7 +36,7 @@ namespace MicroApp.Products.Api.Tests.Handler
             _productCategoryRepository.Setup(r => r.AddAsync(productCategory)).Returns(Task.CompletedTask);
 
             //Act
-            var handler = new AddProductCategoryHandler(_busPublisher.Object, _productCategoryRepository.Object);
+            var handler = new AddProductCategoryHandler(_busPublisher.Object, _productCategoryRepository.Object, _logger.Object);
             await handler.HandleAsync(command, _context.Object);
 
             //Assert
