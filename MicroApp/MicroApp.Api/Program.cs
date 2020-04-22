@@ -1,4 +1,5 @@
 using Autofac.Extensions.DependencyInjection;
+using MicroApp.Common.Logging;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using System.IO;
@@ -15,7 +16,8 @@ namespace MicroApp.Api
                 webHostBuilder
                   .UseContentRoot(Directory.GetCurrentDirectory())
                   .UseIISIntegration()
-                  .UseStartup<Startup>();
+                  .UseStartup<Startup>()
+                  .UseLogging();
             })
             .Build();
 

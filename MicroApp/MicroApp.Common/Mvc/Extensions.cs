@@ -31,6 +31,8 @@ namespace MicroApp.Common.Mvc
         public static T Bind<T>(this T model, Expression<Func<T, object>> expression, object value)
             => model.Bind<T, object>(expression, value);
 
+        public static IApplicationBuilder UseErrorHandler(this IApplicationBuilder builder)
+            => builder.UseMiddleware<ErrorHandlerMiddleware>();
         public static IServiceCollection AddInitializers(this IServiceCollection services, params Type[] initializers)
             => initializers == null
                 ? services

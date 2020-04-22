@@ -71,6 +71,7 @@ namespace MicroApp.Identity.Api
             app.UseCors("CorsPolicy");
             app.UseAllForwardedHeaders();
             app.UseSwaggerDocs();
+            app.UseErrorHandler();
             app.UseRabbitMq();
             
             app.UseRouting();

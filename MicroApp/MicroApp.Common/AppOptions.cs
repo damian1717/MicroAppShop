@@ -1,4 +1,4 @@
-﻿namespace MicroApp.Common.Mvc
+﻿namespace MicroApp.Common
 {
     public class AppOptions
     {

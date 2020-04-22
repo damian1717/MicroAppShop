@@ -65,6 +65,7 @@ namespace MicroApp.Documents.Api
             app.UseCors("CorsPolicy");
             app.UseAllForwardedHeaders();
             app.UseSwaggerDocs();
+            app.UseErrorHandler();
 
             app.UseRabbitMq()
                 .SubscribeCommand<AddDocument>(onError: (c, e) =>
