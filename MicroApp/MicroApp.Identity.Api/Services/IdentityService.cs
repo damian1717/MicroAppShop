@@ -2,6 +2,7 @@
 using MicroApp.Common.RabbitMq;
 using MicroApp.Common.Types;
 using MicroApp.Identity.Api.Domain;
+using MicroApp.Identity.Api.Dto;
 using MicroApp.Identity.Api.Messages.Events;
 using MicroApp.Identity.Api.Repositories;
 using Microsoft.AspNetCore.Identity;
@@ -86,5 +87,9 @@ namespace MicroApp.Identity.Api.Services
             await _userRepository.UpdateAsync(user);
             await _busPublisher.PublishAsync(new PasswordChanged(userId), CorrelationContext.Empty);
         }
+
+        public async Task<User> GetUserByIdAsync(Guid id)
+            => await _userRepository.GetAsync(id);
+        
     }
 }

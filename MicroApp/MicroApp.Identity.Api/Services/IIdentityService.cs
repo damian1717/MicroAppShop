@@ -1,5 +1,6 @@
 ﻿using MicroApp.Common.Authentication;
 using MicroApp.Identity.Api.Domain;
+using MicroApp.Identity.Api.Dto;
 using System;
 using System.Threading.Tasks;
 
@@ -10,5 +11,6 @@ namespace MicroApp.Identity.Api.Services
         Task SignUpAsync(Guid id, string email, string password, string role = Role.User);
         Task<JsonWebToken> SignInAsync(string email, string password);
         Task ChangePasswordAsync(Guid userId, string currentPassword, string newPassword);
+        Task<User> GetUserByIdAsync(Guid id);
     }
 }

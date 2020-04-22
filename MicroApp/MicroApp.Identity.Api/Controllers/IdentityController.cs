@@ -1,8 +1,10 @@
 ﻿using MicroApp.Common.Authentication;
 using MicroApp.Common.Mvc;
+using MicroApp.Identity.Api.Dto;
 using MicroApp.Identity.Api.Messages.Commands;
 using MicroApp.Identity.Api.Services;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace MicroApp.Identity.Api.Controllers
@@ -17,7 +19,11 @@ namespace MicroApp.Identity.Api.Controllers
         {
             _identityService = identityService;
         }
-        
+
+        [HttpGet("GetUserByIdAsync/{id}")]
+        public async Task<ActionResult<UserDto>> GetUserByIdAsync([FromRoute] Guid id)
+            => Ok(await _identityService.GetUserByIdAsync(id));
+
         [HttpGet("me")]
         [JwtAuth]
         public IActionResult Get() => Content($"Your id: '{UserId:N}'.");

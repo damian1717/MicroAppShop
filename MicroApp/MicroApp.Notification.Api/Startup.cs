@@ -4,7 +4,10 @@ using MicroApp.Common.MailKit;
 using MicroApp.Common.Mongo;
 using MicroApp.Common.Mvc;
 using MicroApp.Common.RabbitMq;
+using MicroApp.Common.RestEase;
 using MicroApp.Common.Swagger;
+using MicroApp.Notification.Api.Messages.Events;
+using MicroApp.Notification.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -37,6 +40,9 @@ namespace MicroApp.Notification.Api
                             .AllowAnyHeader()
                             .WithExposedHeaders(Headers));
             });
+
+            services.RegisterServiceForwarder<IUserService>("identity-service");
+
             services.AddControllers().AddNewtonsoftJson();
         }
 
@@ -61,6 +67,9 @@ namespace MicroApp.Notification.Api
             app.UseAllForwardedHeaders();
             app.UseSwaggerDocs();
             app.UseErrorHandler();
+
+            app.UseRabbitMq()
+                .SubscribeEvent<ProductAdded>(@namespace: "products");
 
             app.UseRouting();
 
